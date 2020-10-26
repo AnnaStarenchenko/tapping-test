@@ -193,6 +193,8 @@ section#start-screen {
 }
 
 .hand-pane {
+  position: relative;
+  
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   
