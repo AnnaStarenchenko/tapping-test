@@ -98,15 +98,15 @@ textarea {
   --key-btn-arrows-size: calc(0.22*var(--key-btn-size));
 }
 
-@media only screen and (max-width: 1200px) {
+/*@media only screen and (max-width: 1200px) {
   :root {
     font-size: 24px;
   }
-}
+}*/
 @media only screen and (max-width: 600px) {
   :root {
     --key-btn-size: 25vw;
-    font-size: 28px;
+    font-size: 16px;
   }
 }
 
@@ -115,7 +115,6 @@ html, body {
 }
 body {
   max-height: 100vh;
-  margin: 0;
   
   background: white;
   color: black;
