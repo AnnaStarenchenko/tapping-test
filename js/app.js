@@ -54,8 +54,10 @@ var keyBtnsData = [{
   event_code: "KeyE"
 }];
 
-var curKeyBtns;
+var countdownInitVal = 5;
 var countdownInt;
+
+var curKeyBtns;
 var curSwitcherInt;
 
 var timePerMoveMs = 5000;
@@ -121,7 +123,7 @@ var showUp = function (id) {
 
 var resetCounter = function () {
   var counterEl = document.getElementById("counter");
-  counterEl.dataset.count = 3;
+  counterEl.dataset.count = countdownInitVal;
   showUp("counter");
 };
 
@@ -183,7 +185,7 @@ var runRoundActivities = function (showUpElId) {
   hideUp(showUpElId);
   
   resetCounter();
-  var countdownTimeMs = timePerMoveMs / 3;
+  var countdownTimeMs = timePerMoveMs / countdownInitVal;
   countdownInt = setInterval(updCounter, countdownTimeMs);
   
   curSwitcherInt = setInterval(makeNextMove, timePerMoveMs);
