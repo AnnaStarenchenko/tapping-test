@@ -121,22 +121,22 @@ var showUp = function (id) {
   document.getElementById(id).classList.remove("hidden");
 };
 
-var resetCounter = function () {
-  var counterEl = document.getElementById("counter");
-  counterEl.dataset.count = countdownInitVal;
-  showUp("counter");
+var createCounter = function (initVal, parentEl) {
+  var counterEl = document.createElement("div");
+  counterEl.id = "counter";
+  counterEl.dataset.count = initVal;
+  parentEl.appendChild(counterEl);
+  return counterEl;
 };
 
-var getNewCount = function () {
-  var counterEl = document.getElementById("counter");
+var getNewCount = function (counterEl) {
   return parseInt(counterEl.dataset.count) - 1;
 };
 
-var setCounterCount = function (newCount) {
-  var counterEl = document.getElementById("counter");
+var setCounterCount = function (counterEl, newCount) {
   counterEl.dataset.count = newCount;
   if (newCount === 0) {
-    hideUp("counter");
+    counterEl.remove();
   }
 };
 
@@ -155,14 +155,15 @@ var incHitCount = function (keyBtnEl) {
   keyBtnEl.dataset.hits = hits + 1;
 };
 
-var updCounter = function () {
-  var newCount = getNewCount();
+var updCounter = function (counterEl) {
+  var newCount = getNewCount(counterEl);
+  
   if (newCount === 0) {
     clearInterval(countdownInt);
     countdownInt = null;
   }
   
-  setCounterCount(newCount);
+  setCounterCount(counterEl, newCount);
 };
 
 var makeNextMove = function () {
@@ -181,12 +182,13 @@ var makeNextMove = function () {
   }
 };
 
-var runRoundActivities = function (showUpElId) {
+var runRoundActivities = function (handPaneSelector, showUpElId) {
   hideUp(showUpElId);
   
-  resetCounter();
+  var handPaneEl = document.querySelector(handPaneSelector);
+  var counterEl = createCounter(handPaneEl, countdownInitVal);
   var countdownTimeMs = timePerMoveMs / countdownInitVal;
-  countdownInt = setInterval(updCounter, countdownTimeMs);
+  countdownInt = setInterval(updCounter, countdownTimeMs, counterEl);
   
   curSwitcherInt = setInterval(makeNextMove, timePerMoveMs);
   
@@ -201,14 +203,14 @@ var startTestRound = function (roundName) {
         "btn-r1", "btn-r2", "btn-r3",
         "btn-r6", "btn-r5", "btn-r4"
       ];
-      runRoundActivities("resume-block");
+      runRoundActivities("#right-hand-screen > .hand-pane", "resume-block");
       break;
     case "left-hand-screen":
       curKeyBtns = [
         "btn-l1", "btn-l2", "btn-l3",
         "btn-l6", "btn-l5", "btn-l4"
       ];
-      runRoundActivities("results-block");
+      runRoundActivities("#left-hand-screen > .hand-pane", "results-block");
       break;
   }
 };
