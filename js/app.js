@@ -121,7 +121,7 @@ var showUp = function (id) {
   document.getElementById(id).classList.remove("hidden");
 };
 
-var createCounter = function (initVal, parentEl) {
+var createCounter = function (parentEl, initVal) {
   var counterEl = document.createElement("div");
   counterEl.id = "counter";
   counterEl.dataset.count = initVal;
