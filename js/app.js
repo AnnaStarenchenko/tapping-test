@@ -121,10 +121,12 @@ var showUp = function (id) {
   document.getElementById(id).classList.remove("hidden");
 };
 
-var createCounter = function (parentEl, initVal) {
+var createCounter = function (parentEl, initVal, durationMs) {
   var counterEl = document.createElement("div");
   counterEl.id = "counter";
   counterEl.dataset.count = initVal;
+  counter.style["animation-iteration-count"] = initVal;
+  counter.style["animation-duration"] = durationMs + "ms";
   parentEl.appendChild(counterEl);
   return counterEl;
 };
@@ -186,8 +188,8 @@ var runRoundActivities = function (handPaneSelector, showUpElId) {
   hideUp(showUpElId);
   
   var handPaneEl = document.querySelector(handPaneSelector);
-  var counterEl = createCounter(handPaneEl, countdownInitVal);
   var countdownTimeMs = timePerMoveMs / countdownInitVal;
+  var counterEl = createCounter(handPaneEl, countdownInitVal, countdownTimeMs);
   countdownInt = setInterval(updCounter, countdownTimeMs, counterEl);
   
   curSwitcherInt = setInterval(makeNextMove, timePerMoveMs);
