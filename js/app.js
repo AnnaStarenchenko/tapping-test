@@ -125,8 +125,8 @@ var createCounter = function (parentEl, initVal, durationMs) {
   var counterEl = document.createElement("div");
   counterEl.id = "counter";
   counterEl.dataset.count = initVal;
-  counter.style["animation-iteration-count"] = initVal;
-  counter.style["animation-duration"] = durationMs + "ms";
+  counterEl.style["animation-iteration-count"] = initVal;
+  counterEl.style["animation-duration"] = durationMs + "ms";
   parentEl.appendChild(counterEl);
   return counterEl;
 };
