@@ -20,8 +20,97 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 <body>
-  <p>Hello world!</p>
-  
+  <main>
+    <div id="counter"></div>
+
+    <section id="start-screen">
+      <header>
+        <h1>Теппинг-тест</h1>
+      </header>
+
+      <div class="brief-text">
+        <p>Перед вами тест для исследования характеристик нервной системы. Пожалуйста, внимательно прочитайте инструкцию.</p>
+        <p>Найдите на клавиатуре клавиши "1", "2", "3", "E", "W", "Q", запомните их расположение и последовательность.</p>
+        <p>Вам  будет нужно нажимать текущую активную клавишу в течение 5&nbsp;секунд любым пальцем <em>правой руки</em>, затем перейти к следующей клавише и так далее. Активная клавиша помечается цветом. Переходите к следующей активной клавише по сигналу. <strong>Ваша задача</strong> — нажать каждую клавишу как можно большее число раз. Для достижения адекватного результата работайте без перерыва все 5&nbsp;секунд.</p>
+        <p>После того, как время истечёт и все указанные клавиши будут нажаты правой рукой, нужно будет повторить всё то же самое после небольшой паузы любым пальцем <em>левой руки</em>.</p>
+        <p>Чтобы результаты теста были достоверными, пожалуйста, выполните следующие условия его прохождения:</p>
+        <ul>
+          <li>По возможности используйте для прохождения теста стационарный компьютер или ноутбук;</li>
+          <li>Если для прохождения теста вы всё-таки пользуетесь мобильным устройством, положите его на твердую поверхность;</li>
+          <li>Убедитесь, что звук вашего устройства включен;</li>
+          <li>Положите руки на стол так, чтобы локти касались поверхности и работали только кисти.</li>
+        </ul>
+        <p>Если инструкция не до конца вам ясна, попробуйте пройти тест, чтобы понять, что именно нужно делать, а затем повторите прохождение уже на результат.</p>
+      </div>
+
+      <p>Нажмите "НАЧАТЬ", когда будете готовы.</p>
+
+      <!--<a href="#right-hand-screen" class="action-link">НАЧАТЬ</a>-->
+      <button id="beep-btn" class="action-link" data-href="#right-hand-screen" onclick="beep();">НАЧАТЬ</button>
+    </section>
+
+    <section id="right-hand-screen">
+      <header>
+        <h2>Для ПРАВОЙ руки</h2>
+      </header>
+
+      <div class="hand-pane">
+        <button id="btn-r1" class="key-btn">1</button>
+        <button id="btn-r2" class="key-btn">2</button>
+        <button id="btn-r3" class="key-btn">3</button>
+        <button id="btn-r4" class="key-btn">Q</button>
+        <button id="btn-r5" class="key-btn">W</button>
+        <button id="btn-r6" class="key-btn">E</button>
+      </div>
+
+      <div id="resume-block" class="hidden">
+        <p><strong>Время сменить руку.</strong></p>
+        <p>Нажмите "ПРОДОЛЖИТЬ", когда будете готовы.</p>
+        <a href="#left-hand-screen" class="action-link">ПРОДОЛЖИТЬ</a>
+      </div>
+    </section>
+
+    <section id="left-hand-screen">
+      <header>
+        <h2>Для ЛЕВОЙ руки</h2>
+      </header>
+
+      <div class="hand-pane">
+        <button id="btn-l1" class="key-btn">1</button>
+        <button id="btn-l2" class="key-btn">2</button>
+        <button id="btn-l3" class="key-btn">3</button>
+        <button id="btn-l4" class="key-btn">Q</button>
+        <button id="btn-l5" class="key-btn">W</button>
+        <button id="btn-l6" class="key-btn">E</button>
+      </div>
+
+      <div id="results-block" class="hidden">
+        <p>Тест окончен!</p>
+        <p>Остался последний штрих.</p>
+        <a href="#results-screen" class="action-link">РЕЗУЛЬТАТЫ</a>
+      </div>
+    </section>
+
+    <section id="results-screen">
+      <header>
+        <h2>Ваши результаты</h2>
+        <p>Сделайте снимок экрана и отправьте его исследователю.</p>
+        <p>Спасибо! :)</p>
+      </header>
+
+      <div class="hand-pane">
+        <button class="key-btn"></button>
+        <button class="key-btn"></button>
+        <button class="key-btn"></button>
+        <button class="key-btn"></button>
+        <button class="key-btn"></button>
+        <button class="key-btn"></button>
+      </div>
+
+      <p>Чтобы начать тест заново, просто обновите страницу.</p>
+    </section>
+  </main>
+
   <script src="js/app.js"></script>
 </body>
 </html>
