@@ -236,7 +236,7 @@ document.querySelectorAll(".key-btn").forEach(function (node) {
   node.classList.add("noselect");
 });
 
-window.addEventListener("keydown", function (event) {
+window.addEventListener("keyup", function (event) {
   if (event.defaultPrevented) {
     return;
   }
