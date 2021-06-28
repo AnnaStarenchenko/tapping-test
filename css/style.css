@@ -278,6 +278,18 @@ section#start-screen {
   font-weight: 600;
   z-index: 1;
 }
+#results-scrren .key-btn[data-idx="4"] {
+  grid-row: 2;
+  grid-column: 3;
+}
+#results-scrren .key-btn[data-idx="5"] {
+  grid-row: 2;
+  grid-column: 2;
+}
+#results-scrren .key-btn[data-idx="6"] {
+  grid-row: 2;
+  grid-column: 1;
+}
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
