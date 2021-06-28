@@ -269,14 +269,14 @@ section#start-screen {
 }
 
 #results-screen .key-btn:before {
-    content: attr(data-idx);
-    position: absolute;
-    top: -1em;
-    left: -1em;
-    color: red;
-    font-size: 0.5em;
-    font-weight: 600;
-    z-index: 1;
+  content: attr(data-idx);
+  position: absolute;
+  top: -1em;
+  left: -1em;
+  color: red;
+  font-size: 0.5em;
+  font-weight: 600;
+  z-index: 1;
 }
 
 .noselect {
@@ -287,6 +287,10 @@ section#start-screen {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+.textselect {
+  user-select: text;
+  cursor: text;
 }
 
 /* ==========================================================================
