@@ -2,6 +2,7 @@
 // GLOBAL STATE
 
 var startHash = '#start-screen';
+var resultsHash = '#results-screen';
 var curScreen;
 
 var keyBtnsData = [{
@@ -88,7 +89,7 @@ function beep () {
   setTimeout(function () {
     oscillator.stop();
   }, soundDuration);
-};
+}
 
 // HELPERS
 
@@ -222,8 +223,15 @@ var countResults = function (res_key_btns, rhp_key_btns, lhp_key_btns) {
   for (var i = 0; i < res_key_btns.length; i++) {
     var rh_val = parseInt(rhp_key_btns[i].dataset.hits) || 0;
     var lh_val = parseInt(lhp_key_btns[i].dataset.hits) || 0;
-    var avg = 0.5*(rh_val + lh_val);
-    res_key_btns[i].innerText = avg;
+    res_key_btns[i].innerText = 0.5 * (rh_val + lh_val); // avg
+  }
+};
+
+var clearHitsData = function (rhp_key_btns, lhp_key_btns) {
+  // NB: Pre-supposing that 'rhp_key_btns' and 'lhp_key_btns' have the same length.
+  for (var i = 0; i < rhp_key_btns.length; i++) {
+    delete rhp_key_btns[i].dataset.hits;
+    delete lhp_key_btns[i].dataset.hits;
   }
 };
 
@@ -231,7 +239,7 @@ var countResults = function (res_key_btns, rhp_key_btns, lhp_key_btns) {
 
 document.querySelectorAll(".key-btn").forEach(function (node) {
   node.onclick = function (event) {
-    console.log("clicked", event.target);
+    console.log("click", event.target);
     incHitCount(node);
   };
   node.classList.add("noselect");
@@ -255,7 +263,7 @@ window.addEventListener("keyup", function (event) {
 }, true);
 
 document.querySelectorAll(".action-link").forEach(function (node) {
-  node.onclick = function (event) {
+  node.onclick = function (_event) {
     var startRound = function (href) {
       if (!isRoundStarted()) {
         var hash = href.split('#')[1];
@@ -279,14 +287,20 @@ window.onload = function () {
   location.hash = startHash;
 }; 
 
-window.onhashchange = function () {
+window.onhashchange = function (_event) {
   curScreen = location.hash.substr(1, location.hash.length - 8);
   
-  if (location.hash === '#results-screen') {
+  if (location.hash === resultsHash) {
     var res_key_btns = document.querySelectorAll("#results-screen > .hand-pane > .key-btn");
     var rhp_key_btns = document.querySelectorAll("#right-hand-screen > .hand-pane > .key-btn");
     var lhp_key_btns = document.querySelectorAll("#left-hand-screen > .hand-pane > .key-btn");
     
     countResults(res_key_btns, rhp_key_btns, lhp_key_btns);
+
+    clearHitsData(rhp_key_btns, lhp_key_btns);
   }
+};
+
+window.onpopstate = function (event) {
+  console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
 };
