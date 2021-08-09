@@ -303,4 +303,10 @@ window.onhashchange = function (_event) {
 
 window.onpopstate = function (event) {
   console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+  // NB: Effectively disables the browser navigation, allowing to only move forward.
+  if (event.state && event.state.visited) {
+    location.reload();
+  } else {
+    history.replaceState({visited: true}, "", document.location);
+  }
 };
