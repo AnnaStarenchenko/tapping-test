@@ -231,12 +231,14 @@ var countResults = function (res_key_btns, rhp_key_btns, lhp_key_btns) {
 
 document.querySelectorAll(".key-btn").forEach(function (node) {
   node.onclick = function (event) {
+    console.log("clicked", event.target);
     incHitCount(node);
   };
   node.classList.add("noselect");
 });
 
 window.addEventListener("keyup", function (event) {
+  console.log("keyup", event);
   if (event.defaultPrevented) {
     return;
   }
